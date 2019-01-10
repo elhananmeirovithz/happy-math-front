@@ -1,0 +1,10 @@
+.btn-primary 
+{
+    border-radius: 0;
+    height:5.5vh;
+    padding: 0
+}
+
+.btn-text{
+    font-size: 3vh;
+}
