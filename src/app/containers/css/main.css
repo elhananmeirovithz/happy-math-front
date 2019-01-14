@@ -26,15 +26,11 @@ body {
     overflow: hidden;
 }
 
-.row-targil-up {
-    height:75vh;
+.row-targil {
+    height:80vh;
     overflow: hidden;
 }
 
-.row-targil-down {
-    height:5vh;
-    overflow: hidden;
-}
 
 .row-foot {
     height:15vh;

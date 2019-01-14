@@ -2,6 +2,11 @@ import React from "react";
 import './css/ButtonToolbarNumbers.css';
 import { ButtonToolbarNumbersButton } from  "./ButtonToolbarNumbersButton"; 
 
+// import 'bootstrap';
+// import 'bootstrap/js/dist/modal'
+// import 'bootstrap/js/dist/tooltip'
+// import 'bootstrap/dist/css/bootstrap.css'
+
 export const ButtonToolbarNumbers = (props) => {
         return (
             <div>

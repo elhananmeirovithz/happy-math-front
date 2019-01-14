@@ -1,0 +1,19 @@
+.container-fluid {
+    height: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.row_targil {
+    margin-left: 0px;
+    margin-right: 0px;
+    display: inline-block;
+    height:8vh;
+    width: 100%;
+}
+
+.col_targil {
+    width: 10%;
+    display: inline-block;
+    height:8vh;
+}

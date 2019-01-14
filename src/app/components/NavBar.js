@@ -1,13 +1,20 @@
 import React from "react";
 import './css/NavBar.css';
 
+// import 'bootstrap';
+// import 'bootstrap/js/dist/modal';
+// import 'bootstrap/js/dist/tooltip';
+// import 'bootstrap/dist/css/bootstrap.css';
+
 export const NavBar = (props) => {
         return (
-            <nav className="navbar bg-primary navbar-dark">
-                 <a href="#" className="navbar-brand">Happy Math Game</a>
-                <button className="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+            <nav className="navbar bg-primary ">
+                <a href="#" className="navbar-brand">
+                    <span className="a-text">Happy Math Game</span>
+                </a>
+                {/* <button className="navbar-brand navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
                     <span className="navbar-toggler-icon"></span>
-                </button>
+                </button> */}
                 {/* <div className="collapse navbar-collapse" id="navbarMenu">
                     <ul className="navbar-nav">
                         <li className="nav-item">

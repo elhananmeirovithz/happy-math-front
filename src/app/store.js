@@ -3,14 +3,18 @@ import logger from 'redux-logger';
 
 import userReducer from "./reducers/userReducer";
 import mathReducer from "./reducers/mathReducer";
+import targilAreaReducer from "./reducers/targilAreaReducer";
 
-const createStores = createStore(
+const store = createStore(
     combineReducers({
         mathReducer,
-        userReducer
+        userReducer,
+        targilAreaReducer
     }), 
     {}, 
     applyMiddleware(logger)
 );
 
-export default createStores
+console.log(store.getState())
+
+export default store
