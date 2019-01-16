@@ -7,12 +7,18 @@ import './css/TargilAreaRow.css';
 // import 'bootstrap/dist/css/bootstrap.css'
 
 export const TargilAreaRow = (props) => {
+        
+        function reverseString(str) {
+            if (str === "")
+            return "";
+            else
+            return reverseString(str.substr(1)) + str.charAt(0);
+        }
 
         var type = props.type;
-        
         switch (type) {
             case "number":
-                var num_text = props.num.toString();
+                var num_text = reverseString(props.num.toString());
                 var text_disp = [];
                 var margin = 0;
                 var backgroundColor = ""
@@ -22,16 +28,16 @@ export const TargilAreaRow = (props) => {
                         if(res == null){ var res="" };
                         text_disp.push(res);
                     }
-                
                 break;
             case "operator":
                 var num_text = props.symble;
+                // console.log(num_text)
                 var margin = (-1 * (props.height/2)) + "vh"
                 var backgroundColor = ""
                 var text_disp = [];
                 for (var i = 10-1; i >= 0; i--)
                     {
-                        if(i == props.symble-1){ var res=num_text }else{var res = ""};
+                        if(i == props.colToShow-1){ var res=num_text } else {var res = ""};
                         text_disp.push(res);
                     }
                 break;
@@ -40,15 +46,22 @@ export const TargilAreaRow = (props) => {
                 var text_disp = [];
                 for (var i = 10-1; i >= 0; i--)
                     {
-                        if(i <= props.lineToShow-1){ var res="." }else{var res = ""};
+                        if(i <= props.colToShow-1) { 
+                            var res="." 
+                        } else {
+                            var res = ""
+                        };
                         text_disp.push(res);
                     }
                 var margin = 0;
                 var backgroundColor = "black"
                 break;    
             default:
+
         }
         
+        // console.log(props.rowsToShow)
+
         var colStyle=[];
         for (var i = 10-1; i >= 0; i--)
             {
@@ -109,7 +122,6 @@ export const TargilAreaRow = (props) => {
             "textAlign": "center",
         };
 
-        console.log(eval(colStyle[0]))
         return (
             <div className="row_targil" style={rowStyle}>
                 <div className="col_targil" style={eval(colStyle[0])}><span style={textStyle}>{text_disp[0]}</span></div>
@@ -122,11 +134,6 @@ export const TargilAreaRow = (props) => {
                 <div className="col_targil" style={eval(colStyle[7])}><span style={textStyle}>{text_disp[7]}</span></div>
                 <div className="col_targil" style={eval(colStyle[8])}><span style={textStyle}>{text_disp[8]}</span></div>
                 <div className="col_targil" style={eval(colStyle[9])}><span style={textStyle}>{text_disp[9]}</span></div>
-            </div>
-            // <div className="btn-group" role="group" aria-label="First group">
-            //     <button type="button" className="btn btn-primary">
-            //         {props.num}</span>
-            //     </button>
-            // </div>         
+            </div>      
         )
 };

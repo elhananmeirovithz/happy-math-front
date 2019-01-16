@@ -10,87 +10,68 @@ import Container from 'react-bootstrap/lib/Container'
 import Row from 'react-bootstrap/lib/Row'
 // import div from 'react-bootstrap/lib/div'
 
+var lineweidth = 0.05;
 
 export const TargilArea = (props) => {
         var jsonRows = props.targil.rows;
         var jsonRowsLength = Object.keys(jsonRows).length;
         
         var heightRows = 0;
-        var griddivums = [];
+        var colNum = [];
+        var num = [];
+        var operator = [];
+        var type = [];
+        var height = [];
         for (var i = 0; i < jsonRowsLength; i++) {
-            switch (eval("jsonRows.row" + i + ".type")) {
+            type.push(eval("jsonRows.row" + i + ".type"));
+            switch (type[i]) {
                 case "number":
-                    griddivums.push(eval("jsonRows.row" + i + ".number").toString().length)
-                    heightRows=heightRows+1;
+                    colNum.push(eval("jsonRows.row" + i + ".number").toString().length);
+                    num.push(eval("jsonRows.row" + i + ".number"));
+                    operator.push("")
+                    height.push(1);
+                    heightRows=heightRows + 1;
                     break;
                 case "line":
-                    heightRows=heightRows+0.5;
+                    colNum.push(eval("jsonRows.row" + i + ".symbleCol"));
+                    num.push("")
+                    operator.push("")
+                    height.push(lineweidth);
+                    heightRows=heightRows+lineweidth; // the height of the line
+                    break;
+                case "operator":
+                    colNum.push(eval("jsonRows.row" + i + ".symbleCol"));
+                    num.push("")
+                    operator.push(eval("jsonRows.row" + i + ".operator"))
+                    height.push(1);
+                    heightRows=heightRows+0;
                     break;
                 default:
-                    griddivums.push(0)
+                    num.push("")
+                    colNum.push(0)
+                    operator.push("")
             }
             // console.log(eval("jsonRows.row" + i))
         }
-        heightRows=80/heightRows;
-
-        /* Generate the targil presentation */
-            let html = [];
-                for (var i = 0; i < jsonRowsLength; i++) {
-                    var html_row = "";
-                    switch (eval("jsonRows.row" + i + ".type")) {
-                        case "number":
-                            var num_text = eval("jsonRows.row" + i + ".number").toString();
-                            html_row = html_row + "<li key={" + i + "}><div  className='row' >";
-                            console.log(typeof math.max(griddivums));
-                            for (var ii = 0; ii < math.max(griddivums); ii++) {
-                                html_row = html_row + "<div class='divumn' style='background-divor:#aaa;'>"
-                                    html_row = html_row + "<p>" + i + "</p>";       
-                                html_row = html_row + "</div>";        
-                            }
-                            html_row = html_row + "</div></li>"; 
-                            break;
-                        case "line":
-                            html_row = html_row + "<li key={" + i + "}><div className='row'>";
-                                html_row = html_row + "<div className='div-lg-2 div-lg-offset-1'>";
-                                    html_row = html_row + "<hr></hr></div'>";
-                                html_row = html_row + "</div'></li>";
-                            // html_row = html_row + "</div'>";
-                            break;
-                        default:
-                        html_row = html_row + <div className='row'>;
-                        html_row = html_row + </div>;
-                    }
-                    html.push(html_row);
-                }
+        // consolse.log(height[1]*heightRows)
+        heightRows=80/heightRows; //80 is the hight of the targilArea ///need to get out to the main
+        var colNumMax = math.max(colNum);
+        
+        /*generate the rows to display*/ 
 
 
-        // for (var i = 0; i < math.max(griddivums); i++) {
 
-            const numbers = [1, 2, 3, 4, 5];
-            const listItems = numbers.map((number,i) =>
-              <li key={i}>{number}</li>
-            );
-
-            // console.log(listItems);
-        const listItems2 = html.map((htmli ,i) =>
-          <li key={i}>{htmli}</li>
-        );
-        // console.log(listItems2);
-
-
-        return (
-            // <ul>
-            //   {listItems2}
-            //   {/* {a} */}
-            // </ul>  
+        return ( 
             <Container fluid="true" justify="start" className="container-fluid">
                 {/* the number + the hight in % and the type=(number/line ...) */}
-                <TargilAreaRow num={345} height={30} type={"number"} rowsToShow={4}/>
-                {/* the symble + the hight in % and the type=(operator) the col to display */}
-                <TargilAreaRow symble={"+"} height={30} type={"operator"} rowsToShow={4} symbleCol={4}/>
-                <TargilAreaRow num={65} height={30} type={"number"} rowsToShow={4}/>
-
-                <TargilAreaRow height={2} type={"line"} rowsToShow={4} lineToShow={3}/>
+                {type[0] ? (<TargilAreaRow num={num[0]} symble={operator[0]} height={height[0]*heightRows} type={type[0]} rowsToShow={colNumMax} colToShow={colNum[0]}/>):("")}
+                {type[1] ? (<TargilAreaRow num={num[1]} symble={operator[1]} height={height[1]*heightRows} type={type[1]} rowsToShow={colNumMax} colToShow={colNum[1]}/>):("")}
+                {type[2] ? (<TargilAreaRow num={num[2]} symble={operator[2]} height={height[2]*heightRows} type={type[2]} rowsToShow={colNumMax} colToShow={colNum[2]}/>):("")}
+                {type[3] ? (<TargilAreaRow num={num[3]} symble={operator[3]} height={height[3]*heightRows} type={type[3]} rowsToShow={colNumMax} colToShow={colNum[3]}/>):("")}
+                {type[4] ? (<TargilAreaRow num={num[4]} symble={operator[4]} height={height[4]*heightRows} type={type[4]} rowsToShow={colNumMax} colToShow={colNum[4]}/>):("")}
+                {type[5] ? (<TargilAreaRow num={num[5]} symble={operator[5]} height={height[5]*heightRows} type={type[5]} rowsToShow={colNumMax} colToShow={colNum[5]}/>):("")}
+                {type[6] ? (<TargilAreaRow num={num[6]} symble={operator[6]} height={height[6]*heightRows} type={type[6]} rowsToShow={colNumMax} colToShow={colNum[6]}/>):("")}
+                {type[7] ? (<TargilAreaRow num={num[7]} symble={operator[7]} height={height[7]*heightRows} type={type[7]} rowsToShow={colNumMax} colToShow={colNum[7]}/>):("")}
             </Container>
         )
 };

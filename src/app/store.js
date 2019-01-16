@@ -15,6 +15,6 @@ const store = createStore(
     applyMiddleware(logger)
 );
 
-console.log(store.getState())
+// console.log(store.getState())
 
 export default store

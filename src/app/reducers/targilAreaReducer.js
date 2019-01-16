@@ -7,6 +7,7 @@ const initialState = {
         "row1":{
             "type":"operator",
             "operator":"+",
+            "symbleCol":3,
         },
         "row2":{
             "type":"number",
@@ -14,15 +15,13 @@ const initialState = {
         },
         "row3":{
             "type":"line",
-            "numberWidth":2,
+            "symbleCol":3,
         },
         "row4":{
             "type":"number",
             "number":100,
         },
-    },
-
-        
+    }, 
   }
 
 const targilAreaReducer = (
