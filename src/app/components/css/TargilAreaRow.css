@@ -8,3 +8,22 @@
  .col_targil {
     margin: 0px;
 } 
+
+@-webkit-keyframes MARK {
+    0%, 25% {
+      background-color: rgb(230, 230, 230);
+      border: 3px solid rgb(210, 210, 210);
+    }
+    26%, 50% {
+      background-color: rgb(220, 220, 220);
+      border: 3px solid rgb(210, 210, 210);
+    }
+    51%, 75% {
+      background-color: rgb(210, 210, 210);
+      border: 3px solid rgb(210, 210, 210);
+    }
+    76%, 100% {
+      background-color: rgb(220, 220, 220);
+      border: 3px solid rgb(210, 210, 210);
+    }        
+  }

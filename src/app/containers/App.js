@@ -40,7 +40,7 @@ class App extends React.Component {
                         col-md-8 col-md-offset-2
                         col-sm-10 col-sm-offset-1 
                         col-xs-12 col-xs-offset-0  
-                        text-white  bg-info height-100">
+                        height-100">
                         <TargilArea targil={this.props.targil}/>
                         </div>
                 </div> 
@@ -50,7 +50,7 @@ class App extends React.Component {
                         col-md-8 col-md-offset-2
                         col-sm-10 col-sm-offset-1 
                         col-xs-12 col-xs-offset-0  
-                        text-white bg-warning height-100">
+                        text-white height-100">
                         <ButtonToolbarNumbers/>
                         </div>
                 </div>

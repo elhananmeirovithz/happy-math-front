@@ -1,5 +1,6 @@
 import React from "react";
 import './css/TargilAreaRow.css';
+const math = require('mathjs');
 
 // import 'bootstrap';
 // import 'bootstrap/js/dist/modal'
@@ -26,6 +27,8 @@ export const TargilAreaRow = (props) => {
                     {
                         var res = num_text.charAt(i);
                         if(res == null){ var res="" };
+                        var tmp = math.add(props.show,-1);
+                        if(!tmp.includes(i)){ var res="" };
                         text_disp.push(res);
                     }
                 break;
@@ -60,17 +63,25 @@ export const TargilAreaRow = (props) => {
 
         }
         
-        // console.log(props.rowsToShow)
+        // console.log(props.highlight)
 
         var colStyle=[];
         for (var i = 10-1; i >= 0; i--)
             {
+
                 if (props.rowsToShow  <= i){ 
                     var res="colStyleHid" 
                 } else {
                     switch (type) {
                         case "number":
-                            var res="colStyleVis"
+                            if (props.mark != undefined && props.mark.includes(i)){
+                                console.log(props.mark)
+                                var res="colStyleVisMark"
+                            } else if (props.highlight != undefined && props.highlight.includes(i)){
+                                var res="colStyleVisHighlight"
+                            } else {
+                                var res="colStyleVis"
+                            }
                             break;
                         case "operator":
                             var res="colStyleOpe"
@@ -81,6 +92,7 @@ export const TargilAreaRow = (props) => {
                 colStyle.push(res);
             }
 
+            // console.log(colStyle)
         const rowStyle = {
             "height":props.height.toString() + "vh",
             "display":"block",
@@ -103,9 +115,19 @@ export const TargilAreaRow = (props) => {
             "display":"inline-block",
             "width": 100/props.rowsToShow + "%",
             "visibility":"visible"
-            
         };
 
+        const colStyleVisHighlight = {}
+        Object.assign(colStyleVisHighlight, colStyleVis, {"backgroundColor":"rgb(240, 240, 240)"});
+        
+        const colStyleVisMark = {}
+        Object.assign(colStyleVisMark, colStyleVis, {
+            "WebkitAnimation": "MARK 2s infinite",  /* Safari 4+ */
+            "MozAnimation": "MARK 2s infinite",  /* Fx 5+ */
+            "OAnimation": "MARK 2s infinite",  /* Opera 12+ */
+            "animation": "MARK 2s infinite",  /* IE 10+, Fx 29+ */
+        });
+        
         const colStyleOpe = {
             "height":props.height.toString() + "vh",
             "lineHeight":props.height.toString() + "vh",
